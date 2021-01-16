@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface CityService {
     List<CityDto> getAll();
+
+    List<String> getAllNames();
+
+    List<String> getNamesContaining(String partOfName);
 }

@@ -1,0 +1,8 @@
+server:
+  port: 5000
+external-api:
+  key: ffb03fb1d565a5fa4479d381bd66aa6b
+  base-url: api.openweathermap.org/data/2.5/forecast
+  cities-resource-file-name: city.list.json
+  default-days_count: 10
+  initial-cities: London, Moscow, Tokyo
