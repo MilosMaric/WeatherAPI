@@ -1,20 +1,23 @@
 package rs.weather.api.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import rs.weather.api.dto.CityDto;
-import rs.weather.api.external.OpenWeatherApi;
+import rs.weather.api.service.external.OpenWeatherApiService;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
 @Service
+@RequiredArgsConstructor
 public class CityServiceImpl implements CityService {
+    private final OpenWeatherApiService openWeatherApiService;
 
     @Override
     public List<CityDto> getAll() {
-        return OpenWeatherApi.getCities();
+        return openWeatherApiService.getCities();
     }
 
     @Override
