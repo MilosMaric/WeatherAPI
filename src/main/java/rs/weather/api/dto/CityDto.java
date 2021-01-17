@@ -8,5 +8,5 @@ public class CityDto {
     private String name;
     private String state;
     private String country;
-    private Coordinates coord;
+    private CoordinatesDto coord;
 }

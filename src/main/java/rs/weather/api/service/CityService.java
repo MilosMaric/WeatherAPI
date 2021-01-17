@@ -10,4 +10,6 @@ public interface CityService {
     List<String> getAllNames();
 
     List<String> getNamesContaining(String partOfName);
+
+    boolean existsByName(String name);
 }

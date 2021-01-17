@@ -6,3 +6,4 @@ external-api:
   cities-resource-file-name: city.list.json
   default-days_count: 10
   initial-cities: London, Moscow, Tokyo
+  units: imperial
