@@ -61,8 +61,14 @@ public class OpenWeatherApiServiceImpl implements OpenWeatherApiService {
         return cachedCities;
     }
 
+    @Override
     public List<String> getDefaultCities() {
         return List.of(INITIAL_CITY1, INITIAL_CITY2, INITIAL_CITY3);
+    }
+
+    @Override
+    public int getDefaultCount() {
+        return DEFAULT_COUNT;
     }
 
     public Double getAverageTemperatureForCity(String cityName, Integer daysCount) {

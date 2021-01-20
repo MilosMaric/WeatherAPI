@@ -13,4 +13,6 @@ public interface WeatherService {
      * @return List of objects where each contains a city name and its respective average temperature for given period.
      */
     List<CityAverageTemperatureDto> getCitiesAverageTemperature(List<String> cityNames, Integer daysCount);
+    
+    List<CityAverageTemperatureDto> getCitiesAverageTemperature();
 }

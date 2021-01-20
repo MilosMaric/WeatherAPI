@@ -6,6 +6,7 @@ import org.springframework.util.CollectionUtils;
 import rs.weather.api.dto.CityAverageTemperatureDto;
 import rs.weather.api.service.external.OpenWeatherApiService;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,17 @@ import java.util.stream.Collectors;
 public class WeatherServiceImpl implements WeatherService {
     private final CityService cityService;
     private final OpenWeatherApiService openWeatherApiService;
+
+    private static final ArrayList<CityAverageTemperatureDto> initialTemperatures = new ArrayList<>();
+
+    @Override
+    public List<CityAverageTemperatureDto> getCitiesAverageTemperature() {
+        List<CityAverageTemperatureDto> dtos = getCitiesAverageTemperature(openWeatherApiService.getDefaultCities(), openWeatherApiService.getDefaultCount());
+
+        initialTemperatures.addAll(dtos);
+
+        return dtos;
+    }
 
     @Override
     public List<CityAverageTemperatureDto> getCitiesAverageTemperature(List<String> cityNames, Integer daysCount) {
@@ -27,4 +39,5 @@ public class WeatherServiceImpl implements WeatherService {
                 .sorted(Comparator.comparingDouble(CityAverageTemperatureDto::getAverageTemperature))
                 .collect(Collectors.toList());
     }
+
 }

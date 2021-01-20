@@ -9,5 +9,7 @@ public interface OpenWeatherApiService {
 
     List<String> getDefaultCities();
 
+    int getDefaultCount();
+
     Double getAverageTemperatureForCity(String cityName, Integer daysCount);
 }
