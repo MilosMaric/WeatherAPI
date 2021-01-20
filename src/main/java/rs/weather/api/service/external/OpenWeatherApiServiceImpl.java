@@ -2,8 +2,8 @@ package rs.weather.api.service.external;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import rs.weather.api.dto.CityDto;
 import rs.weather.api.helpers.HttpHelper;
 
@@ -17,34 +17,33 @@ import java.util.Objects;
 import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toList;
 
-@Component
-@ConfigurationProperties(prefix = "external-api")
+@Service
 //TODO: Check why pulling @Value(s) from YML doesn't work
 public class OpenWeatherApiServiceImpl implements OpenWeatherApiService {
 
-    //    @Value("${default-days-count}")
-    private int DEFAULT_COUNT = 10;
+    @Value("${external-api.default-days-count}")
+    private int DEFAULT_COUNT;
 
-    //    @Value("${cities-resource-file-name}")
-    public String CITIES_JSON_NAME = "city.list.json";
+    @Value("${external-api.cities-resource-file-name}")
+    public String CITIES_JSON_NAME;
 
-    //    @Value("${key}")
-    private String API_KEY = "ffb03fb1d565a5fa4479d381bd66aa6b";
+    @Value("${external-api.key}")
+    private String API_KEY;
 
-    //    @Value("${base-url}")
-    private String API_BASE_URL = "http://api.openweathermap.org/data/2.5/forecast";
+    @Value("${external-api.base-url}")
+    private String API_BASE_URL;
 
-    //    @Value("${initial-cities.city1}")
-    private String INITIAL_CITY1 = "London";
+    @Value("${external-api.initial-cities.city1}")
+    private String INITIAL_CITY1;
 
-    //    @Value("${initial-cities.city2}")
-    private String INITIAL_CITY2 = "Moscow";
+    @Value("${external-api.initial-cities.city2}")
+    private String INITIAL_CITY2;
 
-    //    @Value("${initial-cities.city3}")
-    private String INITIAL_CITY3 = "Tokyo";
+    @Value("${external-api.initial-cities.city3}")
+    private String INITIAL_CITY3;
 
-    //    @Value("${units}")
-    private String UNITS = "imperial";
+    @Value("${external-api.units}")
+    private String UNITS;
 
     private List<CityDto> cachedCities = List.of();
 
@@ -79,7 +78,7 @@ public class OpenWeatherApiServiceImpl implements OpenWeatherApiService {
             averageTemps.add((minTemp + maxTemp) / 2);
         }
 
-        double averageTemperature = Math.round(averageTemps.stream().mapToDouble(d -> d).average().getAsDouble());
+        double averageTemperature = Math.round(averageTemps.stream().mapToDouble(d -> d).average().orElse(0d));
 
         return averageTemperature;
     }

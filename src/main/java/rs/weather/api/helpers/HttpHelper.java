@@ -2,6 +2,7 @@ package rs.weather.api.helpers;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.net.URL;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class HttpHelper {
     public static String get(String urlAsString) {
-        String result = ""; //TODO: check why StringUtils.EMPTY won't import
+        String result = StringUtils.EMPTY;
         try {
             URL url = new URL(urlAsString);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

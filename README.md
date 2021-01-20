@@ -8,6 +8,11 @@ weather data for any city around the world.
 After running the project as a regular spring boot application (through an IDE or by building/running WAR through a
 console), the REST API will be available on port 5000.
 
+## Default values
+
+To change the default 3 cities, go to `application.yml` file and change values of sub items from
+`external-api.initial-cities` property.
+
 ## API Calls
 
 | URL | Method |  Description | 
